@@ -1,1 +1,1 @@
-export const binder=(Ms)=>Ms.map(m=>this[m]=this[m].bind(this))
+export const binder=(x,Ms)=>Ms.forEach(m=>x[m]=x[m].bind(x))

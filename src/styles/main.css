@@ -1,3 +1,115 @@
+/********************************************
+****************** ~FONTS~ ******************
+********************************************/
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Fredericka+the+Great|Open+Sans+Condensed:300,300i,700");
+/********************************************
+**************** ~VARIABLES~ ****************
+********************************************/
+/********************************************
+****************** MIXINS *******************
+********************************************/
+/********************************************
+****************** ~BODY~ *******************
+********************************************/
 body {
+  font-family: "Open Sans Condensed", sans-serif;
+  margin: 0;
   width: 100%;
   height: 100%; }
+  body ul {
+    list-style: none; }
+  body a {
+    text-decoration: none; }
+
+main {
+  margin: 10vw; }
+
+/********************************************
+****************** ~NAV~ ********************
+********************************************/
+.header {
+  background-color: #0f0f0f;
+  display: flex;
+  width: 99.99vw;
+  flex-direction: column; }
+  .header .title {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    justify-content: space-around;
+    font-family: "Fredericka the Great", cursive;
+    font-size: 5em;
+    color: white; }
+  .header #menu-icon {
+    top: 10px;
+    right: 10px;
+    position: relative;
+    align-self: flex-end;
+    width: 40px;
+    height: 20px;
+    margin: 10px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    color: white; }
+    .header #menu-icon span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: white;
+      border-radius: 4px;
+      left: 0;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: 0.25s ease-in-out;
+      -moz-transition: 0.25s ease-in-out;
+      -o-transition: 0.25s ease-in-out;
+      -ms-transition: 0.25s ease-in-out;
+      transition: 0.25s ease-in-out; }
+      .header #menu-icon span:nth-child(1) {
+        top: 0px; }
+      .header #menu-icon span:nth-child(2), .header #menu-icon span:nth-child(3) {
+        top: 8px; }
+      .header #menu-icon span:nth-child(4) {
+        top: 16px; }
+    .header #menu-icon.open span {
+      background: red; }
+      .header #menu-icon.open span:nth-child(1), .header #menu-icon.open span:nth-child(4) {
+        top: 8px;
+        width: 0%;
+        left: 50%; }
+      .header #menu-icon.open span:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg); }
+      .header #menu-icon.open span:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
+
+/********************************************
+****************** ~HOME~ *******************
+********************************************/
+.home .ch-title {
+  font-family: "Amatic SC", cursive;
+  font-size: 2em; }
+
+/********************************************
+************* ~MEDIA QUERIES~ ***************
+********************************************/
