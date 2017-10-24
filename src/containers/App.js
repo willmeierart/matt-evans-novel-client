@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import {RouteTransition} from 'react-router-transition'
+// import FlipPage from 'react-flip-page'
 import '../styles/main.css'
+import '../styles/animations.css'
 import {fetchWPpages, fetchWPposts, selectChapter, toggleMenu} from '../_actions'
 import {binder} from '../__config/Utils'
 import Home from '../components/Home'
 import Chapter from '../components/Chapter'
 import Header from '../components/Header'
 import Menu from '../components/Menu'
+import Footer from '../components/Footer'
 
 class App extends Component {
   constructor(props){
@@ -29,7 +34,7 @@ class App extends Component {
     // })
 
     // this.state = {}
-    // binder(this,[''])
+    binder(this,['prevPage','nextPage'])
   }
   componentDidMount(){
     const fetchBoth=(()=>{
@@ -37,6 +42,8 @@ class App extends Component {
       this.props.onFetchWPposts()
     })()
   }
+  prevPage(){ this.flipPage.gotoPreviousPage() }
+  nextPage(){ this.flipPage.gotoNextPage() }
   render() {
     // const {FnState} = this.props
     return (
@@ -44,18 +51,34 @@ class App extends Component {
         <Router>
           <div>
             <Header {...this.props}/>
-            <Menu {...this.props}/>
+              <ReactCSSTransitionGroup
+                  transitionName="showMenu"
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={500}>
+                {this.props.data.FnState.menuOpen===true &&
+                  <Menu {...this.props}/>}
+              </ReactCSSTransitionGroup>
             <main>
-              <Switch>
-                <Route exact path="/" render={()=>{return(
-                    <Home {...this.props}/>
-                  )}}/>
-                <Route match path="/ch/" render={()=>{return(
-                    <Chapter {...this.props}/>
-                  )}}/>
-                <Route render={() => { return <Redirect to="/" /> }} />
-              </Switch>
+              <Route render={({location,history,match})=>{return(
+                <RouteTransition
+                    pathname={location.pathname}
+                    atEnter={{ opacity: 0}}
+                    atLeave={{ opacity: 0}}
+                    atActive={{ opacity: 1}}
+                    mapStyles={styles=>({opacity:styles.opacity, transform:`translateY(${styles.translateY}px) translateZ(${styles.translateZ})`})}>
+                  <Switch key={location.pathname} location={location}>
+                    <Route exact path="/" render={()=>{return(
+                        <Home {...this.props}/>
+                      )}}/>
+                    <Route match path="/ch/" render={()=>{return(
+                        <Chapter prevPage={this.prevPage} nextPage={this.nextPage} {...this.props}/>
+                      )}}/>
+                    <Route render={() => { return <Redirect to="/" /> }} />
+                  </Switch>
+                </RouteTransition>
+              )}}/>
             </main>
+            <Footer/>
           </div>
         </Router>
       </div>

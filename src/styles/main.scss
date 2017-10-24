@@ -10,6 +10,9 @@ $font-fallback: Helvetica, sans-serif;
 $font-header-title: 'Fredericka the Great', cursive;
 $font-chapter-title: 'Amatic SC', cursive;
 $font-body-type: 'Open Sans Condensed', sans-serif;
+$color-header-bg: #0f0f0f;
+$color-header-accent:white;
+$color-accent-2:red;
 /********************************************
 ****************** MIXINS *******************
 ********************************************/
@@ -27,92 +30,112 @@ $font-body-type: 'Open Sans Condensed', sans-serif;
 body {
   font-family: $font-body-type;
   margin:0;
-  width:100%;
-  height:100%;
+  width:100%; height:100%;
   ul {
     list-style: none;
   }
   a {
     text-decoration: none;
+    color:inherit;
   }
 }
 main {
   margin:10vw;
+  padding-bottom:50px;
 }
 /********************************************
 ****************** ~NAV~ ********************
 ********************************************/
 .header {
-  background-color: #0f0f0f;
-  display: flex;
+  z-index:5;
+  background-color: $color-header-bg;
+  position:relative;
+  display: grid; grid-template-columns: 1fr 50% 1fr; grid-template-rows:1fr;
   width:99.99vw;
-  flex-direction: column;
+  height:6em;
+  border-bottom:2px solid $color-header-accent;
   .title {
-    display: flex;
-    align-self: center;
-    width:50%;
-    justify-content: space-around;
+    z-index:5;
+    grid-column:2/3; grid-row:1/2;
+    display: flex; align-self: center; justify-content: space-around;
+    width:100%;
     font-family: $font-header-title;
     font-size: 5em;
-    color:white;
-  }
-  #menu-icon {
-    top:10px;
-    right:10px;
-    position: relative;
-    align-self: flex-end;
-    width: 40px;
-    height: 20px;
-    margin:10px;
-    @include prefix((
-      transform: rotate(0deg),
-      transition: .5s ease-in-out
-    ), webkit moz o ms)
-    cursor: pointer;
-    color:white;
-    span {
-      display: block;
-      position: absolute;
-      height: 4px;
-      width: 100%;
-      background:white;
-      border-radius: 4px;
-      left: 0;
-      @include prefix ((
-        transform: rotate(0deg),
-        transition: .25s ease-in-out
-      ),webkit moz o ms)
-      &:nth-child(1){
-        top:0px;
-      }
-      &:nth-child(2),&:nth-child(3){
-        top:8px;
-      }
-      &:nth-child(4){
-        top:16px;
-      }
+    color:$color-header-accent;
+    &:hover{
+      color:$color-accent-2;
     }
-    &.open {
-      span{
-        background:red;
-        &:nth-child(1), &:nth-child(4){
-          top: 8px;
-          width: 0%;
-          left: 50%;
-        }
-        &:nth-child(2){
-          @include prefix ((
-            transform: rotate(45deg)
-          ),webkit moz o ms)
-        }
-        &:nth-child(3){
-          @include prefix ((
-            transform: rotate(-45deg)
-          ),webkit moz o ms)
+  }
+  .menu-icon-wrapper{
+    height:100%;
+    grid-column:3/4; grid-row:1/2;
+    display: flex; justify-content: flex-end; align-items: center;
+    // flex-direction: column;
+    #menu-icon {
+      z-index:9999;
+      // position: relative; top:10px; right:10px;
+      // align-self: flex-end;
+      width: 40px; height:20px;
+      margin:20px;
+      @include prefix(( transform: rotate(0deg), transition: .5s ease-in-out ), webkit moz o ms)
+      cursor: pointer;
+      color:$color-header-accent;
+      &:hover{
+        color:$color-accent-2;
+      }
+      span {
+        display: block;
+        position: absolute; left: 0;
+        height: 4px; width: 100%;
+        background:$color-header-accent;
+        border-radius: 4px;
+        @include prefix (( transform: rotate(0deg), transition: .25s ease-in-out ),webkit moz o ms)
+        &:nth-child(1){ top:0px; }
+        &:nth-child(2),&:nth-child(3){ top:8px; }
+        &:nth-child(4){ top:16px; }
+      }
+      &.open {
+        span{
+          background:$color-accent-2;
+          &:nth-child(1), &:nth-child(4){
+            top: 8px; left: 50%;
+            width: 0%;
+          }
+          &:nth-child(2){
+            @include prefix (( transform: rotate(45deg) ),webkit moz o ms)
+          }
+          &:nth-child(3){
+            @include prefix (( transform: rotate(-45deg) ),webkit moz o ms)
+          }
         }
       }
     }
   }
+}
+.menu{
+  z-index:2;
+  background: $color-header-bg;
+  // display:none;
+  color:$color-header-accent;
+  padding-top:6em;
+
+  display:flex;
+  width:30vw;
+
+  height:100vh;
+  position:fixed; right:0; top:0;
+  &.open{
+    display:flex;
+    width:30vw;
+  }
+  li:hover,a:hover{
+    color:$color-accent-2;
+  }
+}
+.footer{
+  position:fixed; bottom:0;
+  width:99.99vw; height:50px;
+  background: $color-header-bg;
 }
 /********************************************
 ****************** ~HOME~ *******************
@@ -121,7 +144,24 @@ main {
   .ch-title{
     font-family:$font-chapter-title;
     font-size: 2em;
+    &:hover{
+      color:$color-accent-2;
+    }
   }
+}
+/********************************************
+**************** ~CHAPTER~ ******************
+********************************************/
+.chapter{
+  .ch-title{
+    display: flex;
+
+  }
+}
+.lastnext{
+  display: flex;
+  width:100%;
+  justify-content: space-between;
 }
 /********************************************
 ************* ~MEDIA QUERIES~ ***************

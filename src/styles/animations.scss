@@ -1,0 +1,21 @@
+/********************************************
+**************** ~OPEN MENU~ ****************
+********************************************/
+.showMenu{
+  &-leave{
+    transform:translateX(0);
+    opacity: 1;
+    &.showMenu-leave-active{
+      transform:translateX(30vw);
+      opacity: .9;
+      transition: transform .5s ease-out, opacity .5s ease-in;
+    }
+  }
+  &-enter{
+    transform:translateX(30vw);
+    &.showMenu-enter-active{
+      transform:translateX(0);
+      transition: transform .5s ease-out;
+    }
+  }
+}

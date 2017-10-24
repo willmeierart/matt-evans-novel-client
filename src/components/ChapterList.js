@@ -6,22 +6,21 @@ export default class ChapterList extends Component {
   constructor(props) {
     super(props)
     // this.state={}
-    binder(this,['renderChapterLinks','selectChapter'])
+    binder(this,['renderChapterLinks'])
   }
-  selectChapter(id){
-    this.props.onSelectChapter(id)
-  }
+  // selectChapter(id){
+  //   this.props.onSelectChapter(id)
+  // }
   renderChapterLinks(){
     let pages = this.props.data.WPdata.allPages
     pages = pages.sort((a,b)=>{return a.id - b.id})
 
     return pages.map(chapterData=>{
-      const content = chapterData.content.rendered
       const {id} = chapterData
       return (
 
-        <li key={id} onClick={()=>this.selectChapter(id)}>
-          <Link to={`/ch/${chapterData.slug}`} content={content} className='ch-title'>
+        <li key={id} onClick={()=>window.scrollTo(0, 0)}>
+          <Link to={`/ch/${chapterData.slug}`} className='ch-title'>
             {chapterData.title.rendered}
           </Link>
         </li>

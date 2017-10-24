@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Provider} from 'react-redux'
 import {persistStore} from 'redux-persist'
 // import localForage from 'localforage'
-import Loader from 'react-loader'
+import Loader from 'react-loader' 
 
 import Store from './Store'
 import App from '../containers/App'

@@ -10,7 +10,9 @@ export default function MainDataReducer(state=initialState, action){
   switch(action.type){
     case FETCH_WP_PAGES:{
       const newState = {...state}
-      newState.allPages = action.payload.data
+      const sorted = action.payload.data.sort((a,b)=>{return a.id - b.id})
+      console.log(action.payload.data);
+      newState.allPages = sorted
       return newState }
     case FETCH_WP_POSTS:{
       const newState = {...state}

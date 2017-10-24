@@ -19,89 +19,131 @@ body {
   body ul {
     list-style: none; }
   body a {
-    text-decoration: none; }
+    text-decoration: none;
+    color: inherit; }
 
 main {
-  margin: 10vw; }
+  margin: 10vw;
+  padding-bottom: 50px; }
 
 /********************************************
 ****************** ~NAV~ ********************
 ********************************************/
 .header {
+  z-index: 5;
   background-color: #0f0f0f;
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 50% 1fr;
+  grid-template-rows: 1fr;
   width: 99.99vw;
-  flex-direction: column; }
+  height: 6em;
+  border-bottom: 2px solid white; }
   .header .title {
+    z-index: 5;
+    grid-column: 2/3;
+    grid-row: 1/2;
     display: flex;
     align-self: center;
-    width: 50%;
     justify-content: space-around;
+    width: 100%;
     font-family: "Fredericka the Great", cursive;
     font-size: 5em;
     color: white; }
-  .header #menu-icon {
-    top: 10px;
-    right: 10px;
-    position: relative;
-    align-self: flex-end;
-    width: 40px;
-    height: 20px;
-    margin: 10px;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
-    -ms-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    color: white; }
-    .header #menu-icon span {
-      display: block;
-      position: absolute;
-      height: 4px;
-      width: 100%;
-      background: white;
-      border-radius: 4px;
-      left: 0;
+    .header .title:hover {
+      color: red; }
+  .header .menu-icon-wrapper {
+    height: 100%;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    .header .menu-icon-wrapper #menu-icon {
+      z-index: 9999;
+      width: 40px;
+      height: 20px;
+      margin: 20px;
       -webkit-transform: rotate(0deg);
       -moz-transform: rotate(0deg);
       -o-transform: rotate(0deg);
       -ms-transform: rotate(0deg);
       transform: rotate(0deg);
-      -webkit-transition: 0.25s ease-in-out;
-      -moz-transition: 0.25s ease-in-out;
-      -o-transition: 0.25s ease-in-out;
-      -ms-transition: 0.25s ease-in-out;
-      transition: 0.25s ease-in-out; }
-      .header #menu-icon span:nth-child(1) {
-        top: 0px; }
-      .header #menu-icon span:nth-child(2), .header #menu-icon span:nth-child(3) {
-        top: 8px; }
-      .header #menu-icon span:nth-child(4) {
-        top: 16px; }
-    .header #menu-icon.open span {
-      background: red; }
-      .header #menu-icon.open span:nth-child(1), .header #menu-icon.open span:nth-child(4) {
-        top: 8px;
-        width: 0%;
-        left: 50%; }
-      .header #menu-icon.open span:nth-child(2) {
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg); }
-      .header #menu-icon.open span:nth-child(3) {
-        -webkit-transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg); }
+      -webkit-transition: 0.5s ease-in-out;
+      -moz-transition: 0.5s ease-in-out;
+      -o-transition: 0.5s ease-in-out;
+      -ms-transition: 0.5s ease-in-out;
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+      color: white; }
+      .header .menu-icon-wrapper #menu-icon:hover {
+        color: red; }
+      .header .menu-icon-wrapper #menu-icon span {
+        display: block;
+        position: absolute;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background: white;
+        border-radius: 4px;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: 0.25s ease-in-out;
+        -moz-transition: 0.25s ease-in-out;
+        -o-transition: 0.25s ease-in-out;
+        -ms-transition: 0.25s ease-in-out;
+        transition: 0.25s ease-in-out; }
+        .header .menu-icon-wrapper #menu-icon span:nth-child(1) {
+          top: 0px; }
+        .header .menu-icon-wrapper #menu-icon span:nth-child(2), .header .menu-icon-wrapper #menu-icon span:nth-child(3) {
+          top: 8px; }
+        .header .menu-icon-wrapper #menu-icon span:nth-child(4) {
+          top: 16px; }
+      .header .menu-icon-wrapper #menu-icon.open span {
+        background: red; }
+        .header .menu-icon-wrapper #menu-icon.open span:nth-child(1), .header .menu-icon-wrapper #menu-icon.open span:nth-child(4) {
+          top: 8px;
+          left: 50%;
+          width: 0%; }
+        .header .menu-icon-wrapper #menu-icon.open span:nth-child(2) {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
+        .header .menu-icon-wrapper #menu-icon.open span:nth-child(3) {
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          -o-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg); }
+
+.menu {
+  z-index: 2;
+  background: #0f0f0f;
+  color: white;
+  padding-top: 6em;
+  display: flex;
+  width: 30vw;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0; }
+  .menu.open {
+    display: flex;
+    width: 30vw; }
+  .menu li:hover, .menu a:hover {
+    color: red; }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 99.99vw;
+  height: 50px;
+  background: #0f0f0f; }
 
 /********************************************
 ****************** ~HOME~ *******************
@@ -109,6 +151,19 @@ main {
 .home .ch-title {
   font-family: "Amatic SC", cursive;
   font-size: 2em; }
+  .home .ch-title:hover {
+    color: red; }
+
+/********************************************
+**************** ~CHAPTER~ ******************
+********************************************/
+.chapter .ch-title {
+  display: flex; }
+
+.lastnext {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; }
 
 /********************************************
 ************* ~MEDIA QUERIES~ ***************

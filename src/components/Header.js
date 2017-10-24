@@ -18,7 +18,9 @@ export default class Header extends Component {
     }
     return (
       <div className='header'>
-        <MenuIcon toggleMenu={this.props.onToggleMenu}/>
+        <div className="menu-icon-wrapper">
+          <MenuIcon toggleMenu={this.props.onToggleMenu}/>
+        </div>
         <Link to="/" className='title'>{splitName('AFTER')}</Link>
       </div>
     )
