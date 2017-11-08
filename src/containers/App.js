@@ -61,22 +61,24 @@ class App extends Component {
             <main>
               <Route render={({location,history,match})=>{return(
                 <RouteTransition
+                    style={{position:'absolute', bottom:0, left:0, width:'100vw',height:'calc(100vh - 2.6041666667vw)'}}
                     pathname={location.pathname}
-                    atEnter={{ opacity: 0}}
-                    atLeave={{ opacity: 0}}
-                    atActive={{ opacity: 1}}
+                    atEnter={{ opacity: 0, translateY:40, translateZ:0}}
+                    atLeave={{ opacity: 0, translateY:-40, translateZ:0}}
+                    atActive={{ opacity: 1, translateY:0, translateZ:0}}
                     mapStyles={styles=>({opacity:styles.opacity, transform:`translateY(${styles.translateY}px) translateZ(${styles.translateZ})`})}>
-                  <Switch key={location.pathname} location={location}>
-                    <Route exact path="/" render={()=>{return(
-                        <Home {...this.props}/>
-                      )}}/>
-                    <Route match path="/ch/" render={()=>{return(
-                        <Chapter prevPage={this.prevPage} nextPage={this.nextPage} {...this.props}/>
-                      )}}/>
-                    <Route render={() => { return <Redirect to="/" /> }} />
-                  </Switch>
-                </RouteTransition>
+                <Switch key={location.pathname} location={location}>
+                  <Route exact path="/" render={()=>{return(
+                      <Home {...this.props}/>
+                    )}}/>
+                  <Route match path="/ch/" render={()=>{return(
+                      <Chapter prevPage={this.prevPage} nextPage={this.nextPage} {...this.props}/>
+                    )}}/>
+                  <Route render={() => { return <Redirect to="/" /> }} />
+                </Switch>
+              </RouteTransition>
               )}}/>
+
             </main>
             <Footer/>
           </div>
